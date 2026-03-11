@@ -23,6 +23,12 @@ jobs:
      - name: Run tests
        run: pytest
 
+     - name: Login to DockerHub
+       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+     - name: Push Docker image
+       run: docker push <dockerhub-username>/calculator-app
+
  docker-build:
    needs: test
    runs-on: ubuntu-latest
